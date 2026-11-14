@@ -1,4 +1,14 @@
 {
+  "SUPPORTED_METHODS": [
+    "simpson_1_3",
+    "simpson_3_8",
+    "trapezoid_simple",
+    "trapezoid_composite",
+    "romberg",
+    "gauss",
+    "clenshaw_curtis",
+    "montecarlo"
+  ],
   "montecarlo": {
     "label": "Monte Carlo",
     "domain": "nd",

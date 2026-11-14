@@ -1,4 +1,4 @@
-name: NA-Engine CI
+name: BRUNO CI
 
 on:
   push:

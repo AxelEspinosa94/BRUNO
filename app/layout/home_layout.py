@@ -12,7 +12,7 @@ home_layout = html.Div(
                 html.Div(
                     id="hero-text",
                     children=[
-                        html.H1("NA‑Engine"),
+                        html.H1("BRUNO"),
                         html.H3("Numerical Analysis Engine"),
                         html.P(
                             "Una plataforma modular para resolver problemas de "
@@ -63,7 +63,7 @@ home_layout = html.Div(
                 html.Div(
                     className="module-card",
                     children=[
-                        html.H3("Álgebra Lineal"),
+                        html.H3("Linear Algebra"),
                         html.P("Solution to Linear Systems and Matrix Operations"),
                         html.Button(
                             "Ir al módulo",
@@ -75,7 +75,7 @@ home_layout = html.Div(
                 html.Div(
                     className="module-card",
                     children=[
-                        html.H3("Derivación Numérica"),
+                        html.H3("Numerical Derivative"),
                         html.P("Diferencias finitas, derivación simbólica."),
                         html.Button(
                             "Ir al módulo",
@@ -87,7 +87,7 @@ home_layout = html.Div(
                 html.Div(
                     className="module-card",
                     children=[
-                        html.H3("Ecuaciones No Lineales"),
+                        html.H3("Nonlinear Equations"),
                         html.P(
                             "Bisección, Falsa Posición, Secante, Newton y Punto Fijo."
                         ),
@@ -99,10 +99,20 @@ home_layout = html.Div(
                 html.Div(
                     className="module-card",
                     children=[
-                        html.H3("Ecuaciones Diferenciales"),
+                        html.H3("Differential Equations"),
                         html.P("Punto Fijo, Euler, Runge–Kutta."),
                         html.Button(
                             "Ir al módulo", id="go-odes", className="secondary-btn"
+                        ),
+                    ],
+                ),
+                html.Div(
+                    className="module-card",
+                    children=[
+                        html.H3("Differential Equations (IVP)"),
+                        html.P("Punto Fijo, Euler, Runge–Kutta."),
+                        html.Button(
+                            "Ir al módulo", id="go-ode-ivp", className="secondary-btn"
                         ),
                     ],
                 ),

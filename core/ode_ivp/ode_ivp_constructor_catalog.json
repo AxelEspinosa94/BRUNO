@@ -1,0 +1,12 @@
+{
+  "SUPPORTED_METHODS": [
+    "euler",
+    "heun",
+    "rk2",
+    "rk4",
+    "rk4_system",
+    "adams_bashforth_2",
+    "adams_bashforth_3",
+    "adams_moulton_2"
+  ]
+}

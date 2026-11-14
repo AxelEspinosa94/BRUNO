@@ -8,6 +8,7 @@ from .callbacks.navigation_callbacks import register_navigation_callbacks
 from .callbacks.non_linear_callbacks import register_nonlinear_callbacks
 from .callbacks.numerical_derivative_callbacks import register_derivative_callbacks
 from .callbacks.ode_callbacks import register_ode_callbacks
+from .callbacks.ode_ivp.ode_ivp_callbacks import register_ode_ivp_callbacks
 from .callbacks.theme_callbacks import register_theme_callbacks
 from .layout.base_layout import layout
 
@@ -25,6 +26,7 @@ def create_app():
     register_derivative_callbacks(app)
     register_nonlinear_callbacks(app)
     register_ode_callbacks(app)
+    register_ode_ivp_callbacks(app)
     register_docs_callbacks(app)
 
     return app

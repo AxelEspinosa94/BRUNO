@@ -12,6 +12,7 @@ from .interpolation_layout import interpolation_section
 from .linear_algebra_layout import linear_algebra_section
 from .non_linear_layout import nonlinear_section
 from .numerical_derivative_layout import derivative_section
+from .ode_ivp.ode_ivp_layout import ode_ivp_section
 from .ode_layout import ode_section
 
 # base = os.path.dirname(__file__)
@@ -53,7 +54,7 @@ layout = html.Div(
                 html.Div(
                     id="title-block",
                     children=[
-                        html.H1("NA‑Engine"),
+                        html.H1("BRUNO"),
                         html.H3("Numerical Analysis Engine"),
                         html.H4(f"Version: {get_git_version()}"),
                     ],
@@ -75,22 +76,25 @@ layout = html.Div(
             children=[
                 html.Button("Home", id="tab-home", className="nav-btn"),
                 html.Button(
-                    "Interpolación", id="tab-interpolation", className="nav-btn"
+                    "Interpolation", id="tab-interpolation", className="nav-btn"
                 ),
-                html.Button("Integración", id="tab-integration", className="nav-btn"),
+                html.Button("Integration", id="tab-integration", className="nav-btn"),
                 html.Button(
-                    "Álgebra Lineal", id="tab-linear-algebra", className="nav-btn"
-                ),
-                html.Button(
-                    "Derivadas", id="tab-numerical-derivative", className="nav-btn"
+                    "Linear Algebra", id="tab-linear-algebra", className="nav-btn"
                 ),
                 html.Button(
-                    "Ecuaciones No Lineales", id="tab-nonlinear", className="nav-btn"
+                    "Numerical Derivative",
+                    id="tab-numerical-derivative",
+                    className="nav-btn",
                 ),
                 html.Button(
-                    "Ecuaciones Diferenciales", id="tab-odes", className="nav-btn"
+                    "Nonlinear Equations", id="tab-nonlinear", className="nav-btn"
                 ),
-                html.Button("Documentación", id="tab-docs", className="nav-btn"),
+                html.Button(
+                    "Differential Equations", id="tab-odes", className="nav-btn"
+                ),
+                html.Button("ODE (IVP)", id="tab-ode-ivp", className="nav-btn"),
+                html.Button("Documentation", id="tab-docs", className="nav-btn"),
                 html.Button("About", id="tab-about", className="nav-btn"),
                 html.Button("Tema", id="toggle-theme", className="nav-btn"),
             ],
@@ -133,6 +137,11 @@ layout = html.Div(
                 ),
                 html.Section(
                     id="section-odes", className="section", children=[ode_section]
+                ),
+                html.Section(
+                    id="section-ode-ivp",
+                    className="section",
+                    children=[ode_ivp_section],
                 ),
                 html.Section(
                     id="section-docs", className="section", children=[docs_section]

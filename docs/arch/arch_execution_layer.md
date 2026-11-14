@@ -157,11 +157,53 @@ Normalization is handled by `NumericalMethod`.
 | Module            | Class                       | File Path                                                   |
 |-------------------|-----------------------------|-------------------------------------------------------------|
 | Interpolation     | `InterpolationExecutor`     | `strategies/executors/interpolation_executors.py`          |
-| Integration       | `IntegrationExecutor`       | `strategies/executors/integration_executors.py`            |
-| ODE               | `ODEExecutor`               | `strategies/executors/ode_executors.py`                    |
+| Integration       | `IntegrationExecutor`       | `strategies/executors/integration/integration_executors.py` |
+| ODE (legacy)      | `ODEExecutor`               | `strategies/executors/ode_executors.py`                    |
+| ODE IVP           | `IVPExecutor`               | `strategies/executors/ode_ivp/ode_ivp_executors.py`        |
 | Linear Algebra    | `LinearAlgebraExecutor`     | `strategies/executors/linear_algebra_executors.py`         |
 | Non‑Linear        | `NonLinearExecutor`         | `strategies/executors/non_linear_executors.py`             |
 | Numerical Deriv.  | `NumericalDerivativeExecutor` | `strategies/executors/numerical_derivative_executors.py` |
+
+### **6.1 Catalog-based executors (Integration, ODE IVP)**
+
+Catalog-based modules replace the internal `dispatch` dict with an executor catalog and
+move each algorithm to its own file:
+
+```
+strategies/executors/<module>/
+    <module>_executors.py           # <Module>Executor: catalog lookup + payload
+    <module>_executors_catalog.json # method → executor path (+ params)
+    payload.py                      # unifies the output of every method
+    methods/
+        <family>.py                 # algorithms, plain functions
+```
+
+```
+run() → catalog lookup → load_rule(executor) → execute(instance[, params]) → build_payload()
+```
+
+ODE IVP extends this with per-method `params`, so several methods share one implementation:
+
+```json
+"heun": {
+  "executor": "strategies.executors.ode_ivp.methods.explicit_rk.run_explicit_rk",
+  "params": { "tableau": "heun" },
+  "expression": "$w_{i+1} = w_i + \\frac{h}{2}(k_1 + k_2)$"
+}
+```
+
+- Euler, Heun, RK2 (midpoint), RK4 and RK4 for systems are one generic explicit RK solver
+  driven by Butcher tableaus (`methods/tableaus.py`). Adding Ralston is a catalog entry.
+- Executors work on vectors: a scalar IVP is a system with `m = 1`.
+- `rk_step` / `rk_solve` are pure functions reused as starters by the Adams methods
+  (and, later, by the shooting method in `ode_bvp`).
+- Method functions return `{"W": ndarray (N + 1, m), "extras": {column: values}}`;
+  `payload.py` turns that into `x`, `y`, `value` (scalar) or `solution` (system),
+  `expression` and `table`.
+- Executors raise `ExecutionError` when the solution stops being finite (divergence).
+
+For catalog-based modules, principle 2 below ("one `_run_<mode>()` per method") becomes
+"one executor function per algorithm family, selected through the catalog".
 
 ---
 

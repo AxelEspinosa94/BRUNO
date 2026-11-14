@@ -149,9 +149,14 @@ class Renderer:
                         blocks.append(type_dispatch["table"](value))
                         continue
 
-                    # markdown
+                    # markdown (expressions may declare "expression_format": "latex")
                     if renderer_type == "markdown":
-                        blocks.append(type_dispatch["markdown"](value))
+                        fmt = (
+                            result.get("expression_format", "text")
+                            if keys == "expression"
+                            else "text"
+                        )
+                        blocks.append(type_dispatch["markdown"](value, fmt=fmt))
                         continue
 
                     # scalar, vector, matrix
@@ -326,13 +331,17 @@ class Renderer:
     # Markdown Renderer
     # ============================================================
 
-    def render_markdown(self, content: str) -> Dict[str, Any]:
-        """Render markdown content."""
+    def render_markdown(self, content: str, fmt: str = "text") -> Dict[str, Any]:
+        """
+        Render markdown content.
+        fmt: "text" (shown as a code block) or "latex" (rendered with MathJax).
+        """
         meta = RENDERER_META["markdown"]
 
         return {
             "type": "markdown",
             "content": content,
+            "format": fmt,
             "caption": meta["caption"],
             "tooltip": meta["tooltip"],
         }

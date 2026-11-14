@@ -180,7 +180,16 @@ class UIContract:
         tooltip = payload.get("tooltip", "")
         expression = payload["content"]
 
-        md = f"```\n{expression}\n```"
+        if payload.get("format") == "latex":
+            # Display mode: accept "$...$" or "$$...$$" or a bare LaTeX string
+            body = expression.strip().strip("$").strip()
+            content = dcc.Markdown(
+                f"$$\n{body}\n$$", className="result-expression", mathjax=True
+            )
+        else:
+            content = dcc.Markdown(
+                f"```\n{expression}\n```", className="result-expression"
+            )
 
         return html.Div(
             [
@@ -191,7 +200,7 @@ class UIContract:
                         Tooltip(tooltip).render() if tooltip else None,
                     ],
                 ),
-                dcc.Markdown(md, className="result-expression"),
+                content,
             ]
         )
 
