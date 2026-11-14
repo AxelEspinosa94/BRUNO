@@ -39,12 +39,16 @@ def _validate_ivp_step(step: Optional[Dict[str, Any]] = None) -> None:
         given = [f for f in group if step.get(f) is not None]
         if len(given) != 1:
             raise ConstructionError(
-                f"IVP '{mode}' mode requires exactly one of {group}; got {given or 'none'}."
+                f"IVP '{mode}' mode requires exactly one of {group};"
+                f" got {given or 'none'}."
             )
 
 
 def _is_real(value: Any) -> bool:
-    """True for finite int/float (numpy included), False for bool, None, str, nan, inf."""
+    """
+    True for finite int/float (numpy included), 
+    False for bool, None, str, nan, inf.
+    """
     if isinstance(value, bool) or not isinstance(
         value, (int, float, np.integer, np.floating)
     ):

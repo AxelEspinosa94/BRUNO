@@ -48,7 +48,8 @@ def build_rows(m, exprs=None, y0s=None):
 def build_input_data(method, exprs, y0s, a, b, step_by, n, h):
     """
     Maps the form to the ode_ivp input_data contract:
-    a single equation is sent as a scalar IVP (str / number), several as a system (lists).
+    a single equation is sent as a scalar IVP (str / number),
+    several as a system (lists).
     """
     exprs = list(exprs or [])
     y0s = list(y0s or [])
@@ -139,7 +140,8 @@ def register_ode_ivp_callbacks(app):
         add_disabled = not systems or new_m >= MAX_EQ
         remove_disabled = new_m <= MIN_EQ
 
-        # Rows only need rebuilding when m changes (labels switch between y and y0, y1, ...)
+        # Rows only need rebuilding when m changes 
+        # (labels switch between y and y0, y1, ...)
         rows = build_rows(new_m, exprs, y0s) if new_m != m else no_update
         return rows, new_m, add_disabled, remove_disabled
 

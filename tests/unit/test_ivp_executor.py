@@ -5,9 +5,6 @@ Reference values come from the worked examples in docs/theory/ode_ivp/
 (y' = y - x**2 + 1, y(0) = 0.5 on [0, 2], h = 0.2; exact y = (x+1)**2 - 0.5 e^x).
 """
 
-import json
-from pathlib import Path
-
 import numpy as np
 import pandas as pd
 import pytest

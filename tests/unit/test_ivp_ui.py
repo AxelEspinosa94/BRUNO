@@ -1,4 +1,7 @@
-"""UI tests for the ode_ivp module: layout, form → input_data mapping and full pipeline."""
+"""
+UI tests for the ode_ivp module: layout, 
+form → input_data mapping and full pipeline.
+"""
 
 import json
 from pathlib import Path

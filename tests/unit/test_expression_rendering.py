@@ -1,4 +1,7 @@
-"""Expressions: LaTeX (expression_format="latex") goes through MathJax, plain text stays a code block."""
+"""
+Expressions: LaTeX (expression_format="latex") goes through MathJax, 
+plain text stays a code block.
+"""
 
 import pytest
 from dash import dcc

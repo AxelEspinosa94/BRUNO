@@ -89,7 +89,9 @@ def build_grid(
 
 
 def ode_symbols(m: int) -> List[str]:
-    """Symbol names for an m-dimensional IVP: ['x', 'y'] or ['x', 'y0', ..., 'y{m-1}']."""
+    """Symbol names for an m-dimensional IVP:
+    ['x', 'y'] or ['x', 'y0', ..., 'y{m-1}'].
+    """
     if m < 1:
         raise ConstructionError("The system must have at least one equation.")
     return ["x", "y"] if m == 1 else ["x"] + [f"y{i}" for i in range(m)]
