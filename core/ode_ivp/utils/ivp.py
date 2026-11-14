@@ -46,7 +46,7 @@ def _validate_ivp_step(step: Optional[Dict[str, Any]] = None) -> None:
 
 def _is_real(value: Any) -> bool:
     """
-    True for finite int/float (numpy included), 
+    True for finite int/float (numpy included),
     False for bool, None, str, nan, inf.
     """
     if isinstance(value, bool) or not isinstance(

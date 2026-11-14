@@ -1,5 +1,5 @@
 """
-Expressions: LaTeX (expression_format="latex") goes through MathJax, 
+Expressions: LaTeX (expression_format="latex") goes through MathJax,
 plain text stays a code block.
 """
 

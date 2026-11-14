@@ -140,7 +140,7 @@ def register_ode_ivp_callbacks(app):
         add_disabled = not systems or new_m >= MAX_EQ
         remove_disabled = new_m <= MIN_EQ
 
-        # Rows only need rebuilding when m changes 
+        # Rows only need rebuilding when m changes
         # (labels switch between y and y0, y1, ...)
         rows = build_rows(new_m, exprs, y0s) if new_m != m else no_update
         return rows, new_m, add_disabled, remove_disabled

@@ -15,7 +15,7 @@ def require_fixed_mesh(instance):
 
 def check_finite(w, x, method):
     """
-    Stops as soon as the solution overflows 
+    Stops as soon as the solution overflows
     (typically h outside the stability region).
     """
     if not np.all(np.isfinite(w)):
