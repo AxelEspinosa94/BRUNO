@@ -34,7 +34,8 @@ def _build_deterministic_payload(instance, value):
 
         return {
             "value": float(value),
-            "expression": f"∫_{a}^{b} f(x) dx ≈ {value:.6g}",
+            "expression": rf"\int_{{{a:g}}}^{{{b:g}}} f(x)\,dx \approx {value:.6g}",
+            "expression_format": "latex",
             "table": table,
             "x": x_plot.tolist(),
             "y": y_plot.tolist(),
@@ -58,7 +59,8 @@ def _build_deterministic_payload(instance, value):
 
         return {
             "value": float(value),
-            "expression": f"∫∫ f(x,y) dA ≈ {value:.6g}",
+            "expression": rf"\iint_D f(x_0, x_1)\,dA \approx {value:.6g}",
+            "expression_format": "latex",
             "table": table,
             "plot_type": "surface",
             "x": X.tolist(),
@@ -75,7 +77,11 @@ def _build_deterministic_payload(instance, value):
 
     return {
         "value": float(value),
-        "expression": f"Integral over R^{dim} ≈ {value:.6g}",
+        "expression": (
+            rf"\int_{{D \subset \mathbb{{R}}^{{{dim}}}}} f(\mathbf{{x}})\,d\mathbf{{x}}"
+            rf" \approx {value:.6g}"
+        ),
+        "expression_format": "latex",
         "table": None,
         "bounds": instance.bounds,
         "n": instance.n,
@@ -102,13 +108,17 @@ def _build_montecarlo_payload(instance, result):
 
     bounds = instance.bounds
 
-    expr = f"∫_D f(x) dV ≈ " f"{result['result']:.6g} " f"± {result['error']:.6g}"
+    expr = (
+        rf"\int_D f(\mathbf{{x}})\,dV \approx {result['result']:.6g}"
+        rf" \pm {result['error']:.6g}"
+    )
 
     return {
         "value": float(result["result"]),
         "std_error": float(result["error"]),
         "volume": float(result["volume"]),
         "expression": expr,
+        "expression_format": "latex",
         "table": table,
         "n": instance.n,
         "bounds": bounds,

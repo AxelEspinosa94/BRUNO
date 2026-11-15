@@ -392,6 +392,14 @@ strategies/validators/<new-module>/
 
 ---
 
+#### **Catalog-based modules**
+
+Integration and ODE IVP replace the internal dispatcher with per-layer JSON catalogs
+(constructor, validator and executor), each with its own `SUPPORTED_METHODS` list.
+See `arch_execution_layer.md` §6.1 and `arch_validation_layer.md` §5 for the pattern.
+
+---
+
 #### **Summary**
 
 The Executor Layer is:
@@ -513,11 +521,20 @@ NA-Engine/
 │   ├── renderer.py             # result dict → typed payload
 │   └── contract.py             # outcome dict → html.Div
 │
+├── core/ode_ivp/               # ODE IVP constructor (catalog-based)
+│   ├── ode_ivp.py
+│   ├── ode_ivp_constructor_catalog.json
+│   └── utils/ivp.py            # step / y0 normalization helpers
+│
 ├── strategies/
 │   ├── validators/
-│   │   └── interpolation_validators.py
+│   │   ├── interpolation_validators.py
+│   │   ├── integration/        # catalog + rules/
+│   │   └── ode_ivp/            # catalog + rules/ (rules receive params)
 │   └── executors/
-│       └── interpolation_executors.py
+│       ├── interpolation_executors.py
+│       ├── integration/        # catalog + methods/ + payload.py
+│       └── ode_ivp/            # catalog + methods/ (tableaus, explicit_rk, adams) + payload.py
 │
 ├── app/
 │   ├── app.py                  # Dash app factory

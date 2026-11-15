@@ -1,0 +1,52 @@
+{
+  "SUPPORTED_METHODS": [
+    "euler",
+    "heun",
+    "rk2",
+    "rk4",
+    "rk4_system",
+    "adams_bashforth_2",
+    "adams_bashforth_3",
+    "adams_moulton_2"
+  ],
+  "euler": {
+    "executor": "strategies.executors.ode_ivp.methods.explicit_rk.run_explicit_rk",
+    "params": { "tableau": "euler" },
+    "expression": "$w_{i+1} = w_i + h\\,f(x_i, w_i)$"
+  },
+  "heun": {
+    "executor": "strategies.executors.ode_ivp.methods.explicit_rk.run_explicit_rk",
+    "params": { "tableau": "heun" },
+    "expression": "$w_{i+1} = w_i + \\frac{h}{2}(k_1 + k_2),\\quad k_2 = f(x_i + h,\\, w_i + h k_1)$"
+  },
+  "rk2": {
+    "executor": "strategies.executors.ode_ivp.methods.explicit_rk.run_explicit_rk",
+    "params": { "tableau": "midpoint" },
+    "expression": "$w_{i+1} = w_i + h\\,k_2,\\quad k_2 = f(x_i + \\tfrac{h}{2},\\, w_i + \\tfrac{h}{2} k_1)$"
+  },
+  "rk4": {
+    "executor": "strategies.executors.ode_ivp.methods.explicit_rk.run_explicit_rk",
+    "params": { "tableau": "rk4" },
+    "expression": "$w_{i+1} = w_i + \\frac{h}{6}(k_1 + 2k_2 + 2k_3 + k_4)$"
+  },
+  "rk4_system": {
+    "executor": "strategies.executors.ode_ivp.methods.explicit_rk.run_explicit_rk",
+    "params": { "tableau": "rk4" },
+    "expression": "$\\mathbf{w}_{i+1} = \\mathbf{w}_i + \\frac{h}{6}(\\mathbf{k}_1 + 2\\mathbf{k}_2 + 2\\mathbf{k}_3 + \\mathbf{k}_4)$"
+  },
+  "adams_bashforth_2": {
+    "executor": "strategies.executors.ode_ivp.methods.adams.run_adams_bashforth",
+    "params": { "steps": 2, "starter": "rk4" },
+    "expression": "$w_{i+1} = w_i + \\frac{h}{2}(3f_i - f_{i-1})$"
+  },
+  "adams_bashforth_3": {
+    "executor": "strategies.executors.ode_ivp.methods.adams.run_adams_bashforth",
+    "params": { "steps": 3, "starter": "rk4" },
+    "expression": "$w_{i+1} = w_i + \\frac{h}{12}(23f_i - 16f_{i-1} + 5f_{i-2})$"
+  },
+  "adams_moulton_2": {
+    "executor": "strategies.executors.ode_ivp.methods.adams.run_adams_moulton_pece",
+    "params": { "predictor_steps": 3, "starter": "rk4" },
+    "expression": "$w_{i+1} = w_i + \\frac{h}{12}(5f(x_{i+1}, w^{p}_{i+1}) + 8f_i - f_{i-1})$"
+  }
+}

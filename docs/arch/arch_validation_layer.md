@@ -134,7 +134,8 @@ class InterpolationValidator:
 |-------------------|--------------------------------|----------------------------------------------------------------|
 | Interpolation     | `InterpolationValidator`       | `strategies/validators/interpolation_validators.py`            |
 | Integration       | `IntegrationValidator`         | `strategies/validators/integration/integration_validators.py`  |
-| ODE               | `ODEValidator`                 | `strategies/validators/ode_validators.py`                      |
+| ODE (legacy)      | `ODEValidator`                 | `strategies/validators/ode_validators.py`                      |
+| ODE IVP           | `IVPValidator`                 | `strategies/validators/ode_ivp/ode_ivp_validators.py`          |
 | Linear Algebra    | `LinearAlgebraValidator`       | `strategies/validators/linear_algebra_validators.py`           |
 | Non‑Linear        | `NonLinearValidator`           | `strategies/validators/non_linear_validators.py`               |
 | Numerical Deriv.  | `NumericalDerivativeValidator` | `strategies/validators/numerical_derivative_validators.py`     |
@@ -182,6 +183,35 @@ Example:
 
 4. **Decoupled logic**  
    The validator simply dispatches to the rule defined in the catalog.
+
+### **Variant: rules with parameters (ODE IVP)**
+
+Integration rules receive only `input_data` and keep per-method data inside the rule
+(e.g. `_validate_n_for_mode` holds a dict of conditions per method).
+ODE IVP moves that data to the catalog, so rules stay generic:
+
+```json
+{
+  "SUPPORTED_METHODS": ["euler", "...", "adams_bashforth_3"],
+  "common_rules": [
+    "strategies.validators.ode_ivp.rules.common_rules.validate_step_mode",
+    "strategies.validators.ode_ivp.rules.common_rules.validate_system_support"
+  ],
+  "adams_bashforth_3": {
+    "params": { "step_modes": ["fixed"], "systems": false, "min_steps": 3 },
+    "rules": ["strategies.validators.ode_ivp.rules.multistep.validate_min_steps"]
+  }
+}
+```
+
+- `common_rules` run for every method; `<method>.rules` run only for that method.
+- Every rule is called as `rule(input_data, params)`, with `params` taken from the method entry.
+- Releasing a feature for a method is a catalog change (e.g. `"systems": true`), not a code change.
+- A method listed in `SUPPORTED_METHODS` without a catalog entry raises `CatalogLoadError`.
+
+Because validators receive the original `input_data` (not the constructor instance),
+rules that need normalized values recompute them with the **same helper** the constructor
+uses (e.g. `_normalize_fixed_step` for `N`), so both layers always agree.
 
 ---
 

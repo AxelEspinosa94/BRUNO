@@ -12,6 +12,7 @@ def register_navigation_callbacks(app):
         "section-numerical-derivative",
         "section-nonlinear",
         "section-odes",
+        "section-ode-ivp",  # temporal: convive con section-odes hasta liberar ode_bvp
         "section-docs",
         "section-about",
     ]
@@ -26,6 +27,7 @@ def register_navigation_callbacks(app):
         "tab-numerical-derivative",
         "tab-nonlinear",
         "tab-odes",
+        "tab-ode-ivp",
         "tab-docs",
         "tab-about",
         # Home Dashboard
@@ -36,7 +38,9 @@ def register_navigation_callbacks(app):
         "go-numerical-derivative",
         "go-nonlinear",
         "go-odes",
+        "go-ode-ivp",
         "open-docs",
+        "tab-ode-ivp",
     ]
 
     # Mapeo dinámico: botón → índice de sección
@@ -49,8 +53,9 @@ def register_navigation_callbacks(app):
         "tab-numerical-derivative": 4,
         "tab-nonlinear": 5,
         "tab-odes": 6,
-        "tab-docs": 7,
-        "tab-about": 8,
+        "tab-ode-ivp": 7,
+        "tab-docs": 8,
+        "tab-about": 9,
         # Home Dashboard
         "home-start-btn": 1,  # Comenzar → Interpolación
         "go-interpolation": 1,
@@ -59,8 +64,9 @@ def register_navigation_callbacks(app):
         "go-numerical-derivative": 4,
         "go-nonlinear": 5,
         "go-odes": 6,
-        "open-docs": 7,
-        "go-about": 8,
+        "go-ode-ivp": 7,
+        "open-docs": 8,
+        "go-about": 9,
     }
 
     @app.callback(
