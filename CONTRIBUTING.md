@@ -1,11 +1,11 @@
 
 ---
 
-# 📘 **CONTRIBUTING.md — NA‑Engine (Professional Edition, English)**
+# 📘 **CONTRIBUTING.md — BRUNO (Professional Edition, English)**
 
-# Contributing to NA‑Engine
+# Contributing to BRUNO
 
-Thank you for your interest in contributing to **NA‑Engine**, a modular numerical analysis engine with a clean architecture, consistent UI/UX, and an advanced rendering system.  
+Thank you for your interest in contributing to **BRUNO**, a modular numerical analysis engine with a clean architecture, consistent UI/UX, and an advanced rendering system.  
 This document outlines the workflow, standards, and recommended practices for contributing to the project.
 
 ---
@@ -35,7 +35,7 @@ python app.py
 
 ## 🌿 2. Branch Workflow (Simplified Git Flow)
 
-NA‑Engine uses a branch‑based workflow to maintain stability, clarity, and a clean project history.
+BRUNO uses a branch‑based workflow to maintain stability, clarity, and a clean project history.
 
 ### Main branches
 - **main** → Stable code and released versions.
@@ -221,7 +221,7 @@ pytest tests/stress
 
 ## 🏁 10. Project Philosophy
 
-NA‑Engine aims to be:
+BRUNO aims to be:
 
 - Modular  
 - Extensible  

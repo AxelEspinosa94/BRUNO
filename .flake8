@@ -8,6 +8,7 @@ exclude =
     .venv,
     venv,
     .NA-venv,
+    .wsl2,
     app/tooltips/,
     scripts/,
     core/base_method_legacy.py,

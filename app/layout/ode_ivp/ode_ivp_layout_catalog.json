@@ -1,0 +1,51 @@
+{
+    "custom_module": "ivp",
+    "supported_methods": [
+        "euler",
+        "heun",
+        "rk2",
+        "rk4",
+        "rk4_system",
+        "adams_bashforth_2",
+        "adams_bashforth_3",
+        "adams_moulton_2"
+    ],
+    "system_methods": ["rk4_system"],
+    "max_equations": 6,
+    "component_map": {
+        "method_selector": "app.layout.ode_ivp.components.ivp_method.ivp_method",
+        "input_mode": "app.layout.ode_ivp.components.ivp_input_mode.ivp_input_mode",
+        "input_area": "app.layout.ode_ivp.components.ivp_input_area.ivp_input_area",
+        "run_button": "app.layout.ode_ivp.components.ivp_btn.ivp_run_btn"
+    },
+    "component_params": {
+        "method_selector": {
+            "options": "method_selector_options"
+        },
+        "input_mode": {
+            "options": "input_mode_selector_options"
+        }
+    },
+    "method_selector_options": [
+        {"label": "Euler",                   "value": "euler"},
+        {"label": "Heun",                    "value": "heun"},
+        {"label": "Runge-Kutta 2 (Midpoint)", "value": "rk2"},
+        {"label": "Runge-Kutta 4",           "value": "rk4"},
+        {"label": "Runge-Kutta 4 (System)",  "value": "rk4_system"},
+        {"label": "Adams-Bashforth 2",       "value": "adams_bashforth_2"},
+        {"label": "Adams-Bashforth 3",       "value": "adams_bashforth_3"},
+        {"label": "Adams-Moulton 2 (PECE)",  "value": "adams_moulton_2"}
+    ],
+    "input_mode_selector_options": [{"label": "Function f(x, y)", "value": "function"}],
+    "header_contents": {
+        "h2": "Differential Equations — Initial Value Problems",
+        "p": "A differential equation tells you how things change; an initial value tells you where they start. Step by step, numerical methods turn both into a trajectory."
+    },
+    "layout_structure": [
+        "method_selector",
+        "input_mode",
+        "input_area",
+        "run_button",
+        "result_area"
+    ]
+}

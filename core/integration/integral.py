@@ -25,6 +25,13 @@ class Integral:
         self.mode = self.input_data.get("mode")
         self.calculation_mode = self.input_data.get("calculation_mode")
 
+        supported = self.catalog.get("SUPPORTED_METHODS", [])
+        if self.calculation_mode not in supported:
+            raise ConstructionError(
+                f"Not supported method for Integration: {self.calculation_mode}. "
+                f"Must be one of: {', '.join(supported)}."
+            )
+
         if self.mode != "function":
             raise ConstructionError("Integration only supports mode='function'.")
 

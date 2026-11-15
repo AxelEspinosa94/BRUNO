@@ -1,0 +1,48 @@
+{
+  "SUPPORTED_METHODS": [
+    "euler",
+    "heun",
+    "rk2",
+    "rk4",
+    "rk4_system",
+    "adams_bashforth_2",
+    "adams_bashforth_3",
+    "adams_moulton_2"
+  ],
+  "common_rules": [
+    "strategies.validators.ode_ivp.rules.common_rules.validate_step_mode",
+    "strategies.validators.ode_ivp.rules.common_rules.validate_system_support"
+  ],
+  "euler": {
+    "params": { "step_modes": ["fixed"], "systems": false },
+    "rules": []
+  },
+  "heun": {
+    "params": { "step_modes": ["fixed"], "systems": false },
+    "rules": []
+  },
+  "rk2": {
+    "params": { "step_modes": ["fixed"], "systems": false },
+    "rules": []
+  },
+  "rk4": {
+    "params": { "step_modes": ["fixed"], "systems": false },
+    "rules": []
+  },
+  "rk4_system": {
+    "params": { "step_modes": ["fixed"], "systems": true },
+    "rules": []
+  },
+  "adams_bashforth_2": {
+    "params": { "step_modes": ["fixed"], "systems": false, "min_steps": 2 },
+    "rules": ["strategies.validators.ode_ivp.rules.multistep.validate_min_steps"]
+  },
+  "adams_bashforth_3": {
+    "params": { "step_modes": ["fixed"], "systems": false, "min_steps": 3 },
+    "rules": ["strategies.validators.ode_ivp.rules.multistep.validate_min_steps"]
+  },
+  "adams_moulton_2": {
+    "params": { "step_modes": ["fixed"], "systems": false, "min_steps": 3 },
+    "rules": ["strategies.validators.ode_ivp.rules.multistep.validate_min_steps"]
+  }
+}

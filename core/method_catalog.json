@@ -28,5 +28,10 @@
     "classConstructor": "core.ode.ODE.ODE",
     "classInputValidator": "strategies.validators.ode_validators.ODEValidator",
     "classExecutor": "strategies.executors.ode_executors.ODEExecutor"
+  },
+  "ode_ivp": {
+    "classConstructor": "core.ode_ivp.ode_ivp.IVP",
+    "classInputValidator": "strategies.validators.ode_ivp.ode_ivp_validators.IVPValidator",
+    "classExecutor": "strategies.executors.ode_ivp.ode_ivp_executors.IVPExecutor"
   }
 }

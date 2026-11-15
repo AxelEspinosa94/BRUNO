@@ -19,7 +19,7 @@ mdurl==0.1.2
 pytest==8.2.0
 
 # --- Optional ---
-jupyter==1.0.0
+# jupyter==1.0.0
 
 # --- Formatting ---
 black==24.3.0

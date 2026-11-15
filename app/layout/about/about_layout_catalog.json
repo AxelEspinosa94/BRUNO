@@ -2,21 +2,25 @@
     "custom_module": "about",
 
     "header_contents": {
-        "h2": "About NA‑Engine",
+        "h2": "About BRUNO",
         "p": "General information, version details, credits, and development notes."
     },
 
     "version_card_title": "Version",
     "version_card_description": [
-        "NA‑Engine uses semantic versioning (SemVer).",
+        "BRUNO uses semantic versioning (SemVer).",
         "The current version corresponds to the latest tag registered in the repository."
     ],
 
     "changelog_title": "Changelog",
     "changelog_items": [
-        "v0.1.2 — Added VERSIONING.md and release automation.",
+        "v0.3.0 — Integral N-Dimensional Extension + Monte Carlo addition in Integration Module.",
+        "v0.2.0 — Integral: Documentation and About Refactoring into Catalog-based approach + Clenshaw-Curtis Quadrature addition in Integration Module.",
+        "v0.1.5 — Unified Output Renderer + Matrix LaTeX + Header Upgrade.",
+        "v0.1.4 — UI/UX Foundation + Tooltip System.",
+        "v0.1.3 — Added VERSIONING.md and release automation.",
         "v0.1.0 — Added documentation module and theory renderer.",
-        "v0.0.x — Core architecture, UI, numerical modules."
+        "v0.0.1 — Core architecture, UI, numerical modules."
     ],
 
     "credits_title": "Credits",
@@ -27,13 +31,13 @@
 
     "documentation_title": "Documentation",
     "documentation_description": [
-        "NA‑Engine includes integrated theoretical documentation.",
+        "BRUNO includes integrated theoretical documentation.",
         "You can access it from the 'Theory Documentation' section."
     ],
 
     "project_notes_title": "Project Notes",
     "project_notes_description": [
-        "NA‑Engine is a modular and extensible tool for numerical analysis.",
+        "BRUNO is a modular and extensible tool for numerical analysis.",
         "Built with Python 3.12 and Dash.",
         "Its architecture separates UI, validation, execution, and rendering to ensure maintainability and scalability."
     ],

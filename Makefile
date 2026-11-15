@@ -1,5 +1,5 @@
 # ============================
-# NA-Engine Release Automation
+# BRUNO Release Automation
 # ============================
 
 ifeq ($(OS),Windows_NT)

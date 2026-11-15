@@ -1,7 +1,7 @@
 
 ---
 
-# 📘 **NA‑Engine — Numerical Analysis Engine (Python 3.12, MIT License)**
+# 📘 **BRUNO — Numerical Analysis Engine (Python 3.12, MIT License)**
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.12-blue?logo=python&logoColor=white" />
@@ -17,7 +17,7 @@
 
 # 🧩 Overview
 
-**NA‑Engine** is a modular, extensible, and interactive engine for solving **Numerical Methods**, **Numerical Analysis**, and **Differential Equations** problems.  
+**BRUNO** is a modular, extensible, and interactive engine for solving **Numerical Methods**, **Numerical Analysis**, and **Differential Equations** problems.  
 Built with **Python 3.12** and powered by **Dash**, it provides automated computations, mathematical rendering, plotting, and structured outputs for academic, scientific, and engineering use.
 
 Its architecture is fully layered, separating:
@@ -73,7 +73,7 @@ This makes the engine highly testable, maintainable, and easy to extend.
 # 📁 Repository Structure
 
 ```
-NA-Engine/
+BRUNO/
 │
 ├── app/
 │   ├── app.py
@@ -154,7 +154,7 @@ http://127.0.0.1:8050/
 
 # 🧠 Architecture Overview
 
-NA‑Engine follows a clean, scalable architecture based on **layered contracts**.
+BRUNO follows a clean, scalable architecture based on **layered contracts**.
 
 ### 🔹 Dash UI Layer
 Layouts + callbacks, fully decoupled from numerical logic.

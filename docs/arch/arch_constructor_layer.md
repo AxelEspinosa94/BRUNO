@@ -83,6 +83,33 @@ The constructor raises `ConstructionError` when the input is structurally invali
 For `Interpolation` with `calculation_mode == "hermite"`, the constructor also checks that the DataFrame has exactly 3 columns (`x`, `y`, `dy`), since this is a
 structural requirement that applies before any mathematical validation can occur.
 
+### 3.4 Method gate and normalization (catalog-based modules)
+
+Catalog-based modules (Integration, ODE IVP) also check `calculation_mode` against the
+`SUPPORTED_METHODS` list of their constructor catalog **before** building anything,
+so an unknown or unreleased method fails fast:
+
+```python
+supported = self.catalog.get("SUPPORTED_METHODS", [])
+if self.calculation_mode not in supported:
+    raise ConstructionError(f"Not supported method for IVP: {self.calculation_mode}. ...")
+```
+
+Each layer (constructor, validator, executor) keeps its own list. A method is released only
+when every layer lists it, and can be held back by removing it from any one of them.
+
+The constructor may also **normalize** equivalent inputs into a single canonical form,
+so later layers do not need to handle every variant. In ODE IVP:
+
+| Input                                   | Normalized attributes                              |
+|-----------------------------------------|----------------------------------------------------|
+| `function`: `str` or `list[str]`        | `self.F(x, y) -> ndarray (m,)`, `self.symbols`, `self.m`, `self.is_system` |
+| `bounds`: `[a, b]` or `[[a, b]]`        | `self.a`, `self.b`                                 |
+| `y0`: number or list of `m` numbers     | `self.y0` (float array of length `m`)              |
+| `step`: `{"mode": "fixed", "n"}` or `{"mode": "fixed", "h"}` | `self.N`, `self.h`, `self.x` (mesh of `N + 1` points) |
+
+If `h` does not divide `[a, b]`, the constructor raises and suggests the nearest valid `h`.
+
 On failure, raises:
 
 ```python
@@ -107,8 +134,9 @@ Which is caught by `NumericalMethod` and normalized by `ErrorNormalizer` into:
 | Module          | Class                | File                                        | kwargs |
 |-----------------|----------------------|---------------------------------------------|--------|
 | Interpolation   | `Interpolation`      | `core/interpolation/interpolation.py`       | yes    |
-| Integration     | `Integration`        | `core/integration/integral.py`              | no*    |
-| ODE             | `ODE`                | `core/ode/ODE.py`                              | no*    |
+| Integration     | `Integral`           | `core/integration/integral.py`              | no*    |
+| ODE (legacy)    | `ODE`                | `core/ode/ODE.py`                              | no*    |
+| ODE IVP         | `IVP`                | `core/ode_ivp/ode_ivp.py`                      | no*    |
 | Linear Algebra             | `linearAlgebra`                | `core/ode/linearAlgebra/linear-algebra.py`                              | no*    |
 | Non-Linear Equation             | `NonLinearEquation`                | `core/nonlinear/Non-linear-base.py`                              | no*    |
 | Numerical Derivative             | `NumericalDerivative`                | `core/derivative/numerical_derivative.py`                              | no*    |
