@@ -118,7 +118,11 @@ Upcoming work will target:
 
 ---
 
+<<<<<<< HEAD
 ## BRUNO v0.1.5 — Stage 5 Patch 2: Unified Output Renderer + Matrix LaTeX + Header Upgrade
+=======
+## NA-Engine v0.1.5 — Stage 5 Patch 2: Unified Output Renderer + Matrix LaTeX + Header Upgrade
+>>>>>>> dev
 **Release date:** 2026-08-04
 
 ### Added
